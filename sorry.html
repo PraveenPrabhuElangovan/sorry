@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #fce4ec, #f3e5f5);
+  text-align: center;
+  color: #444;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #e91e63;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.btn {
+  margin: 10px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #e91e63;
+  color: white;
+  cursor: pointer;
+}
+
+/* hidden sections */
+.hidden {
+  display: none;
+}
+
+/* typing effect */
+#message {
+  margin-top: 20px;
+  min-height: 120px;
+}
+
+/* floating hearts */
+.heart {
+  position: fixed;
+  font-size: 20px;
+  animation: floatUp 4s linear infinite;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>I'm Sorry 💔</h1>
+  <p>I know I made a mistake...</p>
+
+  <button class="btn" onclick="startApology()">Read My Heart 💌</button>
+
+  <div id="message"></div>
+
+  <div id="final" class="hidden">
+    <p>Can you please forgive me? 🥺</p>
+    <button class="btn" onclick="forgive()">Yes ❤️</button>
+    <button class="btn" id="noBtn" onmouseover="moveNo()">No 😢</button>
+  </div>
+</div>
+
+<script>
+// Apology text (EDIT THIS!)
+const text = "I never meant to hurt you pattu... 💔" +
+             "I'm really sorry for what I did..." +
+             "Manichidu Pattu... ❤️";
+
+let i = 0;
+
+function startApology() {
+  typeText();
+  document.getElementById('final').classList.remove('hidden');
+}
+
+// Typing effect
+function typeText() {
+  if (i < text.length) {
+    document.getElementById('message').innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeText, 40);
+  }
+}
+
+// Yes button
+function forgive() {
+  alert("Thank you for forgiving me ❤️ I promise to be better");
+
+  setInterval(() => {
+    let heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerText = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }, 200);
+}
+
+// Funny No button
+let messages = [
+  "No 😢",
+  "Please don't 😭",
+  "Think again 🥺",
+  "You love me 😏",
+  "Okay fine... but still No 😝"
+];
+
+let count = 0;
+
+function moveNo() {
+  const btn = document.getElementById("noBtn");
+
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+
+  btn.style.position = "absolute";
+  btn.style.left = x + "px";
+  btn.style.top = y + "px";
+
+  btn.innerText = messages[count % messages.length];
+  count++;
+}
+</script>
+
+</body>
+</html>
